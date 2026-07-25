@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import StatusBadge, { StatusType } from './StatusBadge';
 import Card from './Card';
 import { usePreferences } from '@/lib/preferences';

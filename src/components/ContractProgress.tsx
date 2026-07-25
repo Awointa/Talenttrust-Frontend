@@ -1,6 +1,7 @@
 'use client';
 
 import { usePreferences } from '@/lib/preferences';
+import { useContractProgress } from '@/hooks/useContractProgress';
 import Card from './Card';
 import { Milestone } from './MilestonesList';
 
@@ -86,19 +87,10 @@ const ContractProgress = ({ milestones }: ContractProgressProps) => {
               className="relative h-3 w-full overflow-hidden rounded-full bg-slate-200"
             >
               <div
-                role="progressbar"
-                aria-valuenow={progressPercent}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label={`${completedCount} of ${totalCount} milestones completed, ${progressPercent}%`}
-                className="relative h-3 w-full overflow-hidden rounded-full bg-slate-200"
+                className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 transition-all duration-500"
+                style={{ width: `${progressPercent}%` }}
               >
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 transition-all duration-500"
-                  style={{ width: `${progressPercent}%` }}
-                >
-                  <span className="sr-only">{progressPercent}% complete</span>
-                </div>
+                <span className="sr-only">{progressPercent}% complete</span>
               </div>
             </div>
           </div>
