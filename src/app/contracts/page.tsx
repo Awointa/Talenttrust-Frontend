@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import EmptyState from '../../components/EmptyState';
+import Card from '../../components/Card';
 import { ContractCreationForm } from '../../components/ContractCreationForm';
 import { listContracts, saveContract } from '@/lib/repository';
 import type { Contract } from '@/types/domain';
@@ -114,14 +115,13 @@ const ContractsPage: React.FC = () => {
           {/* TODO: Replace with a proper ContractSummary list component. */}
           <ul className="space-y-4">
             {contracts.map((contract, idx) => (
-              <li
-                key={`${contract.contractName}-${idx}`}
-                className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm"
-              >
-                <p className="font-semibold text-slate-900">{contract.contractName}</p>
-                <p className="text-sm text-slate-500">
-                  {contract.status} · Created {contract.createdAt}
-                </p>
+              <li key={`${contract.contractName}-${idx}`}>
+                <Card>
+                  <p className="font-semibold text-slate-900">{contract.contractName}</p>
+                  <p className="text-sm text-slate-500">
+                    {contract.status} · Created {contract.createdAt}
+                  </p>
+                </Card>
               </li>
             ))}
           </ul>

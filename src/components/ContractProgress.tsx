@@ -1,6 +1,7 @@
 'use client';
 
 import { usePreferences } from '@/lib/preferences';
+import Card from './Card';
 import { Milestone } from './MilestonesList';
 
 export interface ContractProgressProps {
@@ -89,15 +90,15 @@ const ContractProgress = ({ milestones }: ContractProgressProps) => {
   const currency = milestones.length > 0 ? milestones[0].currency : 'USD';
 
   return (
-    <section
-      aria-labelledby="contract-progress-title"
-      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-    >
-      <h2 id="contract-progress-title" className="text-xl font-semibold text-slate-900">
-        Escrow Progress
-      </h2>
-
-      <div className="mt-6 space-y-6">
+    <section aria-labelledby="contract-progress-title">
+      <Card
+        header={
+          <h2 id="contract-progress-title" className="text-xl font-semibold text-slate-900">
+            Escrow Progress
+          </h2>
+        }
+      >
+        <div className="space-y-6">
         {/* Milestone completion progress */}
         <div>
           <div className="flex items-center justify-between text-sm text-slate-600">
@@ -141,6 +142,7 @@ const ContractProgress = ({ milestones }: ContractProgressProps) => {
           </div>
         </div>
       </div>
+      </Card>
     </section>
   );
 };

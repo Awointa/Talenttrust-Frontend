@@ -1,4 +1,5 @@
 import StatusBadge, { StatusType } from './StatusBadge';
+import Card from './Card';
 import { usePreferences } from '@/lib/preferences';
 
 export type Milestone = {
@@ -17,14 +18,17 @@ export type MilestonesListProps = {
 const MilestonesList = ({ milestones }: MilestonesListProps) => {
   const { formatAmount } = usePreferences();
   return (
-    <section aria-labelledby="milestones-title" className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-      <div className="flex items-center justify-between gap-4">
-        <h2 id="milestones-title" className="text-xl font-semibold text-slate-900">
-          Milestones
-        </h2>
-        <span className="text-sm text-slate-500">{milestones.length} total</span>
-      </div>
-
+    <section aria-labelledby="milestones-title">
+      <Card
+        header={
+          <div className="flex items-center justify-between gap-4">
+            <h2 id="milestones-title" className="text-xl font-semibold text-slate-900">
+              Milestones
+            </h2>
+            <span className="text-sm text-slate-500">{milestones.length} total</span>
+          </div>
+        }
+      >
       {/* 
         Keyboard Accessibility (WCAG 2.1.1):
         We make the scrollable milestones container focusable (tabIndex={0}) and assign it a 'region' role
@@ -63,6 +67,7 @@ const MilestonesList = ({ milestones }: MilestonesListProps) => {
           </article>
         ))}
       </div>
+      </Card>
     </section>
   );
 };

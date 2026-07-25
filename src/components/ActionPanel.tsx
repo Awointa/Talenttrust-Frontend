@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { useWallet } from '@/contexts/WalletContext';
 import { useToast } from '@/components/toast/toast-provider';
+import Card from './Card';
 import { ConfirmDialog } from './ConfirmDialog';
 
 /**
@@ -139,15 +140,14 @@ const ActionPanel = ({
   };
 
   return (
-    <aside
-      aria-labelledby="action-panel-heading"
-      className="sticky top-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-    >
-      <div className="mb-6">
-        <p className="text-sm text-slate-500 uppercase tracking-[0.24em]">Action Panel</p>
-        <h2 id="action-panel-heading" className="mt-2 text-xl font-semibold text-slate-900">
-          What would you like to do?
-        </h2>
+    <aside aria-labelledby="action-panel-heading" className="sticky top-6">
+      <Card
+        header={
+          <div>
+            <p className="text-sm text-slate-500 uppercase tracking-[0.24em]">Action Panel</p>
+            <h2 id="action-panel-heading" className="mt-2 text-xl font-semibold text-slate-900">
+              What would you like to do?
+            </h2>
         {!isWalletConnected && (
           <p className="mt-2 text-sm text-red-500 bg-red-50 p-2 rounded-lg border border-red-100">
             {noWalletMsg}
@@ -183,8 +183,9 @@ const ActionPanel = ({
             {disabledReasons.viewSummary}
           </span>
         )}
-      </div>
-
+          </div>
+        }
+      >
       <div className="space-y-3">
         {actions.includes('Submit Milestone') && (
           <button
@@ -254,6 +255,7 @@ const ActionPanel = ({
         onConfirm={handleConfirm}
         onCancel={handleCancel}
       />
+      </Card>
     </aside>
   );
 };
